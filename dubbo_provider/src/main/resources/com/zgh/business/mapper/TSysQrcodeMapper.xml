@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgh.business.mapper.TSysQrcodeMapper">
+
+    <resultMap type="com.zgh.business.entity.TSysQrcode" id="TSysQrcodeMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="codeName" column="CODE_NAME" jdbcType="VARCHAR"/>
+        <result property="codeType" column="CODE_TYPE" jdbcType="VARCHAR"/>
+        <result property="refreshFrequency" column="REFRESH_FREQUENCY" jdbcType="INTEGER"/>
+        <result property="frequencyUnit" column="FREQUENCY_UNIT" jdbcType="INTEGER"/>
+        <result property="codeClassification" column="CODE_CLASSIFICATION" jdbcType="INTEGER"/>
+        <result property="effectiveDate" column="EFFECTIVE_DATE" jdbcType="VARCHAR"/>
+        <result property="expirationDate" column="EXPIRATION_DATE" jdbcType="VARCHAR"/>
+        <result property="renderMode" column="RENDER_MODE" jdbcType="INTEGER"/>
+        <result property="logoHeight" column="LOGO_HEIGHT" jdbcType="INTEGER"/>
+        <result property="codeColor" column="CODE_COLOR" jdbcType="VARCHAR"/>
+        <result property="codeBgdColor" column="CODE_BGD_COLOR" jdbcType="VARCHAR"/>
+        <result property="recognitionDgree" column="RECOGNITION_DGREE" jdbcType="INTEGER"/>
+        <result property="density" column="DENSITY" jdbcType="INTEGER"/>
+        <result property="logoAddr" column="LOGO_ADDR" jdbcType="VARCHAR"/>
+        <result property="logoWidth" column="LOGO_WIDTH" jdbcType="INTEGER"/>
+        <result property="logoWord" column="LOGO_WORD" jdbcType="VARCHAR"/>
+        <result property="logoWordSize" column="LOGO_WORD_SIZE" jdbcType="INTEGER"/>
+        <result property="logoWordColor" column="LOGO_WORD_COLOR" jdbcType="VARCHAR"/>
+        <result property="codeTextarea" column="CODE_TEXTAREA" jdbcType="VARCHAR"/>
+        <result property="codeLink" column="CODE_LINK" jdbcType="VARCHAR"/>
+        <result property="codeLinkType" column="CODE_LINK_TYPE" jdbcType="INTEGER"/>
+        <result property="codeShortLink" column="CODE_SHORT_LINK" jdbcType="VARCHAR"/>
+        <result property="creater" column="CREATER" jdbcType="INTEGER"/>
+        <result property="createName" column="CREATE_NAME" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATE_TIME" jdbcType="VARCHAR"/>
+        <result property="updater" column="UPDATER" jdbcType="INTEGER"/>
+        <result property="updateName" column="UPDATE_NAME" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR"/>
+        <result property="dataCode" column="DATA_CODE" jdbcType="VARCHAR"/>
+        <result property="note" column="NOTE" jdbcType="VARCHAR"/>
+        <result property="enable" column="ENABLE" jdbcType="VARCHAR"/>
+        <result property="codeSize" column="CODE_SIZE" jdbcType="VARCHAR"/>
+        <result property="codeAddr" column="CODE_ADDR" jdbcType="VARCHAR"/>
+        <result property="scanCount" column="SCAN_COUNT" jdbcType="INTEGER"/>
+        <result property="codePicId" column="CODE_PIC_ID" jdbcType="VARCHAR"/>
+        <result property="isPlatformQr" column="IS_PLATFORM_QR" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="com.zgh.business.entity.TSysQrcodeRecord" id="TSysQrcodeRecordMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="codeId" column="CODE_ID" jdbcType="INTEGER"/>
+        <result property="userId" column="USER_ID" jdbcType="INTEGER"/>
+        <result property="userName" column="USER_NAME" jdbcType="VARCHAR"/>
+        <result property="sex" column="SEX" jdbcType="VARCHAR"/>
+        <result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+        <result property="labourUnionId" column="LABOUR_UNION_ID" jdbcType="INTEGER"/>
+        <result property="creater" column="CREATER" jdbcType="INTEGER"/>
+        <result property="createName" column="CREATE_NAME" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATE_TIME" jdbcType="VARCHAR"/>
+        <result property="updater" column="UPDATER" jdbcType="INTEGER"/>
+        <result property="updateName" column="UPDATE_NAME" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR"/>
+        <result property="dataCode" column="DATA_CODE" jdbcType="VARCHAR"/>
+        <result property="note" column="NOTE" jdbcType="VARCHAR"/>
+        <result property="labourUnionName" column="labourUnionName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="get" resultMap="TSysQrcodeMap">
+         select
+          ID, CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION, EFFECTIVE_DATE, EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE, DENSITY, LOGO_ADDR, LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_LINK, CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER, CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME, DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR, CODE_PIC_ID, CODE_TEXTAREA, IS_PLATFORM_QR
+        from  T_SYS_QRCODE
+        where ID = #{id}
+    </select>
+
+
+    <!--根据动态条件，查询单个-->
+    <select id="getSingle" resultMap="TSysQrcodeMap">
+        select
+        ID, CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION, EFFECTIVE_DATE,
+        EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE, DENSITY, LOGO_ADDR,
+        LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_LINK, CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER,
+        CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME, DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR,
+        CODE_PIC_ID, CODE_TEXTAREA, IS_PLATFORM_QR from T_SYS_QRCODE t
+        where 1=1
+        <include refid="SelectCondition"></include>
+    </select>
+
+
+    <!--根据名称，查询单个-->
+    <select id="getTSysQrcodeByName" resultMap="TSysQrcodeMap">
+        select
+        ID, CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION, EFFECTIVE_DATE,
+        EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE, DENSITY, LOGO_ADDR,
+        LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_LINK, CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER,
+        CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME, DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR,
+        CODE_PIC_ID, CODE_TEXTAREA, IS_PLATFORM_QR from T_SYS_QRCODE t
+        where 1=1
+        and t.CODE_NAME = #{codeName}
+    </select>
+
+
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select SEQ_T_SYS_QRCODE.nextval as id from dual
+        </selectKey>
+        insert into T_SYS_QRCODE(ID,CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION,
+        EFFECTIVE_DATE, EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE,
+        DENSITY, LOGO_ADDR, LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_TEXTAREA, CODE_LINK,
+        CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER, CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME,
+        DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR, CODE_PIC_ID, IS_PLATFORM_QR)
+        values (#{id}, #{codeName}, #{codeType}, #{refreshFrequency}, #{frequencyUnit}, #{codeClassification},
+        #{effectiveDate}, #{expirationDate}, #{renderMode}, #{logoHeight}, #{codeColor}, #{codeBgdColor},
+        #{recognitionDgree}, #{density}, #{logoAddr}, #{logoWidth}, #{logoWord}, #{logoWordSize}, #{logoWordColor},
+        #{codeTextarea}, #{codeLink}, #{codeLinkType}, #{codeShortLink}, #{creater}, #{createName}, #{createTime},
+        #{updater}, #{updateName}, #{updateTime}, #{dataCode}, #{note}, #{enable}, #{codeSize}, #{codeAddr},
+        #{codePicId},#{isPlatformQr})
+    </insert>
+
+    <!--查询单个-->
+    <select id="getNextSeq" resultType="string">
+        select SEQ_T_SYS_QRCODE.nextval as id from dual
+    </select>
+
+<!--    &lt;!&ndash;批量新增所有列&ndash;&gt;-->
+<!--    <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">-->
+<!--        insert into T_SYS_QRCODE(ID, CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION,-->
+<!--        EFFECTIVE_DATE, EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE,-->
+<!--        DENSITY, LOGO_ADDR, LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_TEXTAREA, CODE_LINK,-->
+<!--        CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER, CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME,-->
+<!--        DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR,CODE_PIC_ID, IS_PLATFORM_QR)-->
+<!--        select SEQ_T_SYS_QRCODE.nextval, t.* FROM (-->
+<!--        <foreach collection="list" item="item" separator="union all">-->
+<!--            SELECT-->
+<!--            #{id}, #{item.codeName}, #{item.codeType}, #{item.refreshFrequency}, #{item.frequencyUnit},-->
+<!--            #{item.codeClassification}, #{item.effectiveDate}, #{item.expirationDate}, #{item.renderMode},-->
+<!--            #{item.logoHeight}, #{item.codeColor}, #{item.codeBgdColor}, #{item.recognitionDgree}, #{item.density},-->
+<!--            #{item.logoAddr}, #{item.logoWidth}, #{item.logoWord}, #{item.logoWordSize}, #{item.logoWordColor},-->
+<!--            #{item.codeTextarea}, #{item.codeLink}, #{item.codeLinkType}, #{item.codeShortLink}, #{item.creater},-->
+<!--            #{item.createName}, #{item.createTime}, #{item.updater}, #{item.updateName}, #{item.updateTime},-->
+<!--            #{item.dataCode}, #{item.note}, #{item.enable}, #{item.codeSize}, #{item.codeAddr}, #{item.codePicId}, #{isPlatformQr} FROM dual-->
+<!--        </foreach>-->
+<!--        ) t-->
+<!--    </insert>-->
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update T_SYS_QRCODE
+        <set>
+            <if test="codeName != null and codeName != ''">
+                CODE_NAME = #{codeName},
+            </if>
+            <if test="codePicId != null and codePicId != ''">
+                CODE_PIC_ID = #{codePicId},
+            </if>
+            <if test="codeType != null">
+                CODE_TYPE = #{codeType},
+            </if>
+            <if test="refreshFrequency != null">
+                REFRESH_FREQUENCY = #{refreshFrequency},
+            </if>
+            <if test="frequencyUnit != null">
+                FREQUENCY_UNIT = #{frequencyUnit},
+            </if>
+            <if test="codeClassification != null">
+                CODE_CLASSIFICATION = #{codeClassification},
+            </if>
+            <if test="effectiveDate != null and effectiveDate != ''">
+                EFFECTIVE_DATE = #{effectiveDate},
+            </if>
+            <if test="expirationDate != null and expirationDate != ''">
+                EXPIRATION_DATE = #{expirationDate},
+            </if>
+            <if test="renderMode != null">
+                RENDER_MODE = #{renderMode},
+            </if>
+            <if test="logoHeight != null">
+                LOGO_HEIGHT = #{logoHeight},
+            </if>
+            <if test="codeColor != null and codeColor != ''">
+                CODE_COLOR = #{codeColor},
+            </if>
+            <if test="codeBgdColor != null and codeBgdColor != ''">
+                CODE_BGD_COLOR = #{codeBgdColor},
+            </if>
+            <if test="recognitionDgree != null and recognitionDgree != ''">
+                RECOGNITION_DGREE = #{recognitionDgree},
+            </if>
+            <if test="density != null">
+                DENSITY = #{density},
+            </if>
+            <if test="logoAddr != null and logoAddr != ''">
+                LOGO_ADDR = #{logoAddr},
+            </if>
+            <if test="logoWidth != null">
+                LOGO_WIDTH = #{logoWidth},
+            </if>
+            <if test="logoWord != null and logoWord != ''">
+                LOGO_WORD = #{logoWord},
+            </if>
+            <if test="logoWordSize != null">
+                LOGO_WORD_SIZE = #{logoWordSize},
+            </if>
+            <if test="logoWordColor != null and logoWordColor != ''">
+                LOGO_WORD_COLOR = #{logoWordColor},
+            </if>
+            <if test="codeTextarea != null and codeTextarea != ''">
+                CODE_TEXTAREA = #{codeTextarea},
+            </if>
+            <if test="codeLink != null and codeLink != ''">
+                CODE_LINK = #{codeLink},
+            </if>
+            <if test="codeLinkType != null">
+                CODE_LINK_TYPE = #{codeLinkType},
+            </if>
+            <if test="codeShortLink != null and codeShortLink != ''">
+                CODE_SHORT_LINK = #{codeShortLink},
+            </if>
+            <if test="creater != null">
+                CREATER = #{creater},
+            </if>
+            <if test="createName != null and createName != ''">
+                CREATE_NAME = #{createName},
+            </if>
+            <if test="createTime != null and createTime != ''">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="updater != null">
+                UPDATER = #{updater},
+            </if>
+            <if test="updateName != null and updateName != ''">
+                UPDATE_NAME = #{updateName},
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="dataCode != null and dataCode != ''">
+                DATA_CODE = #{dataCode},
+            </if>
+            <if test="note != null and note != ''">
+                NOTE = #{note},
+            </if>
+            <if test="enable != null and enable != ''">
+                ENABLE = #{enable},
+            </if>
+            <if test="codeSize != null and codeSize != ''">
+                CODE_SIZE = #{codeSize},
+            </if>
+            <if test="codeAddr != null and codeAddr != ''">
+                CODE_ADDR = #{codeAddr},
+            </if>
+            <if test="isPlatformQr != null and isPlatformQr != ''">
+                IS_PLATFORM_QR = #{isPlatformQr},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+
+    <!--通过主键删除-->
+    <delete id="delete">
+        delete from T_SYS_QRCODE where ID = #{id}
+    </delete>
+
+    <!--基础表信息-->
+    <sql id="SelectAttribute">
+        select t.* from T_SYS_QRCODE t
+    </sql>
+
+    <!--公共参数设置-->
+    <sql id="SelectCondition">
+        <if test="id != null">
+            and t.ID = #{id}
+        </if>
+        <if test="codeName != null and codeName != ''">
+            and instr(t.CODE_NAME,#{codeName})>0
+        </if>
+        <if test="codeNameR != null and codeNameR != ''">
+            and t.CODE_NAME = #{codeNameR}
+        </if>
+        <if test="codePicId != null and codePicId != ''">
+            and t.CODE_PIC_ID = #{codePicId}
+        </if>
+        <if test="codeType != null">
+            and t.CODE_TYPE = #{codeType}
+        </if>
+        <if test="refreshFrequency != null">
+            and t.REFRESH_FREQUENCY = #{refreshFrequency}
+        </if>
+        <if test="frequencyUnit != null">
+            and t.FREQUENCY_UNIT = #{frequencyUnit}
+        </if>
+        <if test="codeClassification != null">
+            and t.CODE_CLASSIFICATION = #{codeClassification}
+        </if>
+        <if test="effectiveDate != null and effectiveDate != ''">
+            and t.EFFECTIVE_DATE = #{effectiveDate}
+        </if>
+        <if test="expirationDate != null and expirationDate != ''">
+            and t.EXPIRATION_DATE = #{expirationDate}
+        </if>
+        <if test="renderMode != null">
+            and t.RENDER_MODE = #{renderMode}
+        </if>
+        <if test="logoHeight != null">
+            and t.LOGO_HEIGHT = #{logoHeight}
+        </if>
+        <if test="codeColor != null and codeColor != ''">
+            and t.CODE_COLOR = #{codeColor}
+        </if>
+        <if test="codeBgdColor != null and codeBgdColor != ''">
+            and t.CODE_BGD_COLOR = #{codeBgdColor}
+        </if>
+        <if test="recognitionDgree != null and recognitionDgree != ''">
+            and t.RECOGNITION_DGREE = #{recognitionDgree}
+        </if>
+        <if test="density != null">
+            and t.DENSITY = #{density}
+        </if>
+        <if test="logoAddr != null and logoAddr != ''">
+            and t.LOGO_ADDR = #{logoAddr}
+        </if>
+        <if test="logoWidth != null">
+            and t.LOGO_WIDTH = #{logoWidth}
+        </if>
+        <if test="logoWord != null and logoWord != ''">
+            and t.LOGO_WORD = #{logoWord}
+        </if>
+        <if test="logoWordSize != null">
+            and t.LOGO_WORD_SIZE = #{logoWordSize}
+        </if>
+        <if test="logoWordColor != null and logoWordColor != ''">
+            and t.LOGO_WORD_COLOR = #{logoWordColor}
+        </if>
+        <if test="codeTextarea != null and codeTextarea != ''">
+            and t.CODE_TEXTAREA = #{codeTextarea}
+        </if>
+        <if test="codeLink != null and codeLink != ''">
+            and t.CODE_LINK = #{codeLink}
+        </if>
+        <if test="codeLinkType != null">
+            and t.CODE_LINK_TYPE = #{codeLinkType}
+        </if>
+        <if test="codeShortLink != null and codeShortLink != ''">
+            and t.CODE_SHORT_LINK = #{codeShortLink}
+        </if>
+        <if test="creater != null">
+            and t.CREATER = #{creater}
+        </if>
+        <if test="createName != null and createName != ''">
+            and t.CREATE_NAME = #{createName}
+        </if>
+        <if test="createTime != null and createTime != ''">
+            and t.CREATE_TIME = #{createTime}
+        </if>
+        <if test="updater != null">
+            and t.UPDATER = #{updater}
+        </if>
+        <if test="updateName != null and updateName != ''">
+            and t.UPDATE_NAME = #{updateName}
+        </if>
+        <if test="updateTime != null and updateTime != ''">
+            and t.UPDATE_TIME = #{updateTime}
+        </if>
+        <if test="dataCode != null and dataCode != ''">
+            and t.DATA_CODE = #{dataCode}
+        </if>
+        <if test="note != null and note != ''">
+            and t.NOTE = #{note}
+        </if>
+        <if test="enable != null and enable != ''">
+            and t.ENABLE = #{enable}
+        </if>
+        <if test="codeSize != null and codeSize != ''">
+            and t.CODE_SIZE = #{codeSize}
+        </if>
+        <if test="codeAddr != null and codeAddr != ''">
+            and t.CODE_ADDR = #{codeAddr}
+        </if>
+        <if test="expirationDateBegin != null and expirationDateBegin != ''">
+            and to_date(t.EXPIRATION_DATE, 'YYYY-MM-DD') &gt;= to_date(#{expirationDateBegin}, 'YYYY-MM-DD')
+        </if>
+        <if test="expirationDateEnd != null and expirationDateEnd != ''">
+            and to_date(t.EXPIRATION_DATE, 'YYYY-MM-DD') &lt;= to_date(#{expirationDateEnd}, 'YYYY-MM-DD')
+        </if>
+        <if test="createTimeBegin != null and createTimeBegin!=''">
+            and TO_DATE(t.CREATE_TIME,'YYYY-MM-DD HH24:MI:SS') &gt;= TO_DATE(#{createTimeBegin} ||'00:00:00','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd!=''">
+            and TO_DATE(t.CREATE_TIME,'YYYY-MM-DD HH24:MI:SS') &lt;= TO_DATE(#{createTimeEnd}||'23:59:59','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+        <if test="updateTimeBegin != null and updateTimeBegin!=''">
+            and TO_DATE(t.UPDATE_TIME,'YYYY-MM-DD HH24:MI:SS') &gt;= TO_DATE(#{updateTimeBegin} ||'00:00:00','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+        <if test="updateTimeEnd != null and updateTimeEnd!=''">
+            and TO_DATE(t.UPDATE_TIME,'YYYY-MM-DD HH24:MI:SS') &lt;= TO_DATE(#{updateTimeEnd}||'23:59:59','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+        <if test="ids != null and ids!=''">
+            and t.ID in
+            <foreach item="item" index="index" collection="ids.split(',')" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="scanCount != null and scanCount!=''">
+            and (select count(*) from T_SYS_QRCODE_RECORD a where a.code_id=t.id)>0
+        </if>
+        <if test="exclude3 != null and exclude3!=''">
+            and t.CODE_CLASSIFICATION &lt;&gt; 3
+        </if>
+        <if test="isPlatformQr != null and isPlatformQr != ''">
+            and t.IS_PLATFORM_QR = #{isPlatformQr}
+        </if>
+    </sql>
+
+    <!--分页查询-->
+    <select id="list" parameterType="map" resultMap="TSysQrcodeMap">
+        select * from (select rows_.*, rownum rownums from (
+        <include refid="SelectAttribute"></include>
+        where 1=1
+        <include refid="SelectCondition"></include>
+        order by t.CREATE_TIME desc
+        )rows_ where rownum &lt;= ${pageData.currentPage * pageData.pageSize})
+        where rownums &gt; ${(pageData.currentPage - 1) * pageData.pageSize}
+    </select>
+
+    <select id="count" parameterType="map" resultType="int">
+        select count(*) from (
+        <include refid="SelectAttribute"></include>
+        where 1=1
+        <include refid="SelectCondition"></include>
+        )
+    </select>
+
+    <!--更新系统二维码-->
+    <update id="updateSysCode">
+        update T_SYS_QRCODE
+        <set>
+            CODE_TYPE = #{codeType},
+            REFRESH_FREQUENCY = #{refreshFrequency},
+            FREQUENCY_UNIT = #{frequencyUnit},
+            UPDATER = #{updater},
+            UPDATE_NAME = #{updateName},
+            UPDATE_TIME = #{updateTime},
+            DATA_CODE = #{dataCode},
+            NOTE = #{note}
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--获取全部动态二维码 秒-->
+    <select id="getAllActiveCode" resultMap="TSysQrcodeMap">
+        select
+        ID, CODE_NAME, CODE_TYPE, REFRESH_FREQUENCY, FREQUENCY_UNIT, CODE_CLASSIFICATION, EFFECTIVE_DATE,
+        EXPIRATION_DATE, RENDER_MODE, LOGO_HEIGHT, CODE_COLOR, CODE_BGD_COLOR, RECOGNITION_DGREE, DENSITY, LOGO_ADDR,
+        LOGO_WIDTH, LOGO_WORD, LOGO_WORD_SIZE, LOGO_WORD_COLOR, CODE_LINK, CODE_LINK_TYPE, CODE_SHORT_LINK, CREATER,
+        CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME, DATA_CODE, NOTE, ENABLE, CODE_SIZE, CODE_ADDR,
+        CODE_PIC_ID, CODE_TEXTAREA, IS_PLATFORM_QR from T_SYS_QRCODE t
+        where 1=1
+        and CODE_TYPE = 1
+    </select>
+
+
+    <!--统计二维码列表-->
+    <select id="statisticList" parameterType="map" resultMap="TSysQrcodeMap">
+        select * from (select rows_.*, rownum rownums from (
+        select t.* ,(select count(*) from T_SYS_QRCODE_RECORD a where a.code_id=t.id)SCAN_COUNT
+        from T_SYS_QRCODE t
+        where 1=1
+        <include refid="SelectCondition"></include>
+        order by t.CREATE_TIME desc
+        )rows_ where rownum &lt;= ${pageData.currentPage * pageData.pageSize})
+        where rownums &gt; ${(pageData.currentPage - 1) * pageData.pageSize}
+    </select>
+
+    <select id="statisticCount" parameterType="map" resultType="int">
+        select count(*) from (
+        select t.* ,(select count(*) from T_SYS_QRCODE_RECORD a where a.code_id=t.id)SCAN_COUNT
+        from T_SYS_QRCODE t
+        where 1=1
+        <include refid="SelectCondition"></include>
+        )
+    </select>
+
+    <!--二维码扫码明细列表-->
+    <select id="codeRecordList" parameterType="map" resultMap="TSysQrcodeRecordMap">
+        select * from (select rows_.*, rownum rownums from (
+        select t.*,la.labourunionname as labourUnionName from T_SYS_QRCODE_RECORD t
+        left join TUS_LABOURUNION la on la.id = t.labour_union_id
+        where 1=1
+        <include refid="RecordCondition"></include>
+        order by t.CREATE_TIME desc
+        )rows_ where rownum &lt;= ${pageData.currentPage * pageData.pageSize})
+        where rownums &gt; ${(pageData.currentPage - 1) * pageData.pageSize}
+    </select>
+
+    <select id="codeRecordCount" parameterType="map" resultType="int">
+        select count(*) from (
+        select t.*,la.labourunionname as labourUnionName from T_SYS_QRCODE_RECORD t
+        left join TUS_LABOURUNION la on la.id = t.labour_union_id
+        where 1=1
+        <include refid="RecordCondition"></include>
+        )
+    </select>
+
+    <!--扫码明细表公共参数设置-->
+    <sql id="RecordCondition">
+        <if test="id != null">
+            and t.ID = #{id}
+        </if>
+        <if test="codeId != null and codeId != ''">
+            and t.CODE_ID = #{codeId}
+        </if>
+        <if test="userId != null and userId != ''">
+            and t.USER_ID = #{userId}
+        </if>
+        <if test="userName != null and userName != ''">
+            and instr(t.USER_NAME,#{userName})>0
+        </if>
+        <if test="sex != null and sex != ''">
+            and t.SEX = #{sex}
+        </if>
+        <if test="phone != null and phone != ''">
+            and instr(t.PHONE,#{phone})>0
+        </if>
+        <if test="labourUnionName != null and labourUnionName != ''">
+            and instr(la.labourunionname,#{labourUnionName})>0
+        </if>
+        <if test="createTimeBegin != null and createTimeBegin!=''">
+            and TO_DATE(t.CREATE_TIME,'YYYY-MM-DD HH24:MI:SS') &gt;= TO_DATE(#{createTimeBegin} ||'00:00:00','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd!=''">
+            and TO_DATE(t.CREATE_TIME,'YYYY-MM-DD HH24:MI:SS') &lt;= TO_DATE(#{createTimeEnd}||'23:59:59','YYYY-MM-DD
+            HH24:MI:SS')
+        </if>
+    </sql>
+
+
+    <!--新增二维码扫码明细-->
+    <insert id="insertCodeRecord" keyProperty="id" useGeneratedKeys="true">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select SEQ_T_SYS_QRCODE_RECORD.nextval as id from dual
+        </selectKey>
+        insert into T_SYS_QRCODE_RECORD(ID, CODE_ID, USER_ID, USER_NAME, SEX, PHONE, LABOUR_UNION_ID,
+        CREATER, CREATE_NAME, CREATE_TIME, UPDATER, UPDATE_NAME, UPDATE_TIME,DATA_CODE, NOTE)
+        values (#{id}, #{codeId}, #{userId}, #{userName}, #{sex}, #{phone},#{labourUnionId},
+        #{creater}, #{createName}, #{createTime},#{updater}, #{updateName}, #{updateTime}, #{dataCode}, #{note})
+    </insert>
+</mapper>

@@ -1,0 +1,57 @@
+server:
+  port: 8181
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    url: jdbc:oracle:thin:@10.23.222.148:20408:helowin
+    username: szghbusi
+    password: szgh_busi
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    filters: [stat,wall,log4j]
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    port: 6379
+    host: 10.23.222.145
+    password: zgH12351
+    timeout: 5000
+mybatis:
+  config-location: classpath:mybatis/sqlMapConfig.xml
+  mapper-locations: classpath:com/zgh/business/mapper/*.xml
+
+dubbo:
+  application:
+    name: qrcode_service_provider
+    timeout: 10000
+  registry:
+    address: zookeeper://10.23.222.146:2181
+  config-center:
+    timeout: 10000
+  protocols:
+    dubbo:
+      name: dubbo
+      port: 20771
+      server: netty
+  #    rest:
+  #      name: rest
+  #      port: 8888
+  #      server: netty
+  scan:
+    base-packages: com.zgh.business.service.impl
+  provider:
+    loadbalance: leastactive
+    actives: 100
